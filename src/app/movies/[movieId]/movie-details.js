@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { fetchMovie } from '../../../lib/tmdb'
 import styles from './page.module.css'
 
@@ -5,7 +6,7 @@ export default async function MovieDetails({ movieId }) {
   const movie = await fetchMovie(movieId)
 
   if (!movie) {
-    return <p>Movie not found.</p>
+    notFound()
   }
 
   return (
