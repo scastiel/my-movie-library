@@ -1,4 +1,5 @@
 export async function fetchPopularMovies() {
+  // await delay(2000)
   const apiKey = process.env.TMDB_API_KEY
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
   try {
@@ -11,3 +12,5 @@ export async function fetchPopularMovies() {
     return null
   }
 }
+
+const delay = (ms) => new Promise((r) => setTimeout(r, ms))

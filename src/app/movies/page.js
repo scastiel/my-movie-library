@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { MovieList } from '../../components/movie-list'
 import { fetchPopularMovies } from '../../lib/tmdb'
 
@@ -6,20 +7,27 @@ export const metadata = {
 }
 
 export default async function MoviesPage() {
-  const movies = await fetchPopularMovies()
-
   return (
     <>
       <h1>Popular Movies</h1>
-      {movies !== null ? (
-        <MovieList movies={movies} />
-      ) : (
-        <p>An error occurred 🙁</p>
-      )}
+
+      <Suspense fallback={<p>Loading movies…</p>}>
+        <PopularMovies />
+      </Suspense>
 
       <p>
         <a href="https://www.themoviedb.org/">See more</a>
       </p>
     </>
   )
+}
+
+async function PopularMovies() {
+  const movies = await fetchPopularMovies()
+
+  if (movies === null) {
+    return <p>An error occurred 🙁</p>
+  }
+
+  return <MovieList movies={movies} />
 }
