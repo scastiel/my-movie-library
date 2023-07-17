@@ -1,7 +1,10 @@
 export default function HomePage() {
+  const appTitle = 'My Movie Library'
+  const hasMoreMovies = true
+
   return (
     <main>
-      <h1>My Movie Library</h1>
+      <h1>{appTitle}</h1>
       <p>Here is a list of popular movies:</p>
       <ul className="movie-list">
         <li className="featured">Indiana Jones and the Dial of Destiny</li>
@@ -11,7 +14,11 @@ export default function HomePage() {
         <li>The Super Mario Bros. Movie</li>
       </ul>
       <p>
-        <a href="https://www.themoviedb.org/">See more</a>
+        {hasMoreMovies ? (
+          <a href="https://www.themoviedb.org/">See more</a>
+        ) : (
+          'Nothing more to see here.'
+        )}
       </p>
     </main>
   )
