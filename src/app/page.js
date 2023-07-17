@@ -1,4 +1,10 @@
+import Link from 'next/link'
 import { MovieList } from '../components/movie-list'
+
+export const metadata = {
+  title: 'My Movie Library',
+  description: 'An app created with React and Next.js',
+}
 
 export default function HomePage() {
   const appTitle = 'My Movie Library'
@@ -14,6 +20,10 @@ export default function HomePage() {
 
   return (
     <main>
+      <p>
+        <Link href="/about">About</Link>
+      </p>
+
       <h1>{appTitle}</h1>
       <p>Here is a list of popular movies:</p>
 
