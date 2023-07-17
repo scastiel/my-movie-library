@@ -1,5 +1,4 @@
 import { MovieList } from '../../components/movie-list'
-import { NavMenu } from '../../components/nav-menu'
 
 export const metadata = {
   title: 'Movies',
@@ -15,8 +14,7 @@ export default function MoviesPage() {
   ]
 
   return (
-    <main>
-      <NavMenu />
+    <>
       <h1>Popular Movies</h1>
 
       <MovieList movies={movies} />
@@ -24,6 +22,6 @@ export default function MoviesPage() {
       <p>
         <a href="https://www.themoviedb.org/">See more</a>
       </p>
-    </main>
+    </>
   )
 }
