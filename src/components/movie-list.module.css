@@ -1,0 +1,7 @@
+.movieList {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 350px;
+}
