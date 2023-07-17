@@ -1,3 +1,5 @@
+import { MovieList } from '../components/movie-list'
+
 export default function HomePage() {
   const appTitle = 'My Movie Library'
   const hasMoreMovies = true
@@ -14,11 +16,9 @@ export default function HomePage() {
     <main>
       <h1>{appTitle}</h1>
       <p>Here is a list of popular movies:</p>
-      <ul className="movie-list">
-        {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
+
+      <MovieList movies={movies} />
+
       <p>
         {hasMoreMovies ? (
           <a href="https://www.themoviedb.org/">See more</a>
