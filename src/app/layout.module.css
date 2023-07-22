@@ -13,6 +13,9 @@
 .rootLayout > header {
   border-bottom: 1px solid lightgray;
   padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .rootLayout > footer {

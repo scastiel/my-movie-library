@@ -1,0 +1,7 @@
+.themeSwitch {
+  border: 1px solid lightgray;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 4px 8px;
+}

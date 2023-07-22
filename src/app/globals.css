@@ -5,3 +5,11 @@ h1 {
 a {
   color: #0891b2;
 }
+
+body.dark {
+  background-color: black;
+  filter: invert(1);
+}
+body.dark img {
+  filter: invert(1);
+}

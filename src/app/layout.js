@@ -1,4 +1,5 @@
 import { NavMenu } from '../components/nav-menu'
+import { ThemeSwitch } from '../components/theme-switch'
 import './globals.css'
 import styles from './layout.module.css'
 import { Inter } from 'next/font/google'
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       <body className={`${styles.rootLayout} ${inter.className}`}>
         <header>
           <NavMenu />
+          <ThemeSwitch />
         </header>
 
         <main>{children}</main>
