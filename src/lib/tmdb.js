@@ -42,5 +42,3 @@ export async function searchMovies(query) {
     return null
   }
 }
-
-const delay = (ms) => new Promise((r) => setTimeout(r, ms))

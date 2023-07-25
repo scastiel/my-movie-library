@@ -1,8 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
 import styles from './page.module.css'
-import { fetchPopularMovies, searchMovies } from '../../lib/tmdb'
+import { searchMovies } from '../../lib/tmdb'
 import { MovieList } from '../../components/movie-list'
+import { delay } from '../../lib/helpers'
 
 export default function SearchPage() {
   const [query, setQuery] = useState('')
@@ -13,10 +14,14 @@ export default function SearchPage() {
     let isCurrent = true
 
     setLoading(true)
-    searchMovies(query).then((movies) => {
+    delay(300).then(() => {
       if (isCurrent) {
-        setMovies(movies)
-        setLoading(false)
+        searchMovies(query).then((movies) => {
+          if (isCurrent) {
+            setMovies(movies)
+            setLoading(false)
+          }
+        })
       }
     })
 
