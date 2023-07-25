@@ -1,0 +1,22 @@
+.searchForm {
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+}
+
+.searchForm input {
+  padding: 4px;
+  font-size: 1em;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+.searchForm button {
+  background-color: #0891b2;
+  color: white;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}

@@ -12,6 +12,9 @@ export function NavMenu() {
           <Link href="/movies">Movies</Link>
         </li>
         <li>
+          <Link href="/search">Search</Link>
+        </li>
+        <li>
           <Link href="/about">About</Link>
         </li>
       </ul>
