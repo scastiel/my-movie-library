@@ -1,20 +1,30 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './theme-switch.module.css'
 
 export function ThemeSwitch() {
   const [theme, setTheme] = useState('light')
 
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme')
+    if (storedTheme) {
+      setTheme(storedTheme)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.add('dark')
+    } else {
+      document.body.classList.remove('dark')
+    }
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
   return (
     <button
       onClick={() => {
-        if (theme === 'dark') {
-          document.body.classList.remove('dark')
-          setTheme('light')
-        } else {
-          document.body.classList.add('dark')
-          setTheme('dark')
-        }
+        setTheme(theme === 'light' ? 'dark' : 'light')
       }}
       className={styles.themeSwitch}
     >

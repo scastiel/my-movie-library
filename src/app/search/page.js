@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './page.module.css'
-import { searchMovies } from '../../lib/tmdb'
+import { fetchPopularMovies, searchMovies } from '../../lib/tmdb'
 import { MovieList } from '../../components/movie-list'
 
 export default function SearchPage() {
@@ -9,19 +9,27 @@ export default function SearchPage() {
   const [movies, setMovies] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  useEffect(() => {
+    let isCurrent = true
+
     setLoading(true)
-    const movies = await searchMovies(query)
-    setMovies(movies)
-    setLoading(false)
-  }
+    searchMovies(query).then((movies) => {
+      if (isCurrent) {
+        setMovies(movies)
+        setLoading(false)
+      }
+    })
+
+    return () => {
+      isCurrent = false
+    }
+  }, [query])
 
   return (
     <>
       <h1>Search Movies</h1>
 
-      <form className={styles.searchForm} onSubmit={handleSubmit}>
+      <div className={styles.searchForm}>
         <label htmlFor="query">Query:</label>
         <input
           id="query"
@@ -29,8 +37,7 @@ export default function SearchPage() {
           query={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <button type="submit">Search</button>
-      </form>
+      </div>
 
       {loading && <p>Loading…</p>}
       {movies && <MovieList movies={movies} />}
