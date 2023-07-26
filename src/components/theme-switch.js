@@ -1,16 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styles from './theme-switch.module.css'
+import { useLocalStorageState } from '../lib/hooks'
 
 export function ThemeSwitch() {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme')
-    if (storedTheme) {
-      setTheme(storedTheme)
-    }
-  }, [])
+  const [theme, setTheme] = useLocalStorageState('theme', 'light')
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -18,7 +12,6 @@ export function ThemeSwitch() {
     } else {
       document.body.classList.remove('dark')
     }
-    localStorage.setItem('theme', theme)
   }, [theme])
 
   return (
