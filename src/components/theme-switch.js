@@ -4,6 +4,16 @@ import styles from './theme-switch.module.css'
 import { useLocalStorageState } from '../lib/hooks'
 
 export function ThemeSwitch() {
+  const [theme, toggleTheme] = useTheme()
+
+  return (
+    <button onClick={() => toggleTheme()} className={styles.themeSwitch}>
+      {theme === 'light' ? 'Light' : 'Dark'}
+    </button>
+  )
+}
+
+function useTheme() {
   const [theme, setTheme] = useLocalStorageState('theme', 'light')
 
   useEffect(() => {
@@ -14,14 +24,7 @@ export function ThemeSwitch() {
     }
   }, [theme])
 
-  return (
-    <button
-      onClick={() => {
-        setTheme(theme === 'light' ? 'dark' : 'light')
-      }}
-      className={styles.themeSwitch}
-    >
-      {theme === 'light' ? 'Light' : 'Dark'}
-    </button>
-  )
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
+
+  return [theme, toggleTheme]
 }

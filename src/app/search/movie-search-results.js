@@ -4,6 +4,17 @@ import { delay } from '../../lib/helpers'
 import { searchMovies } from '../../lib/tmdb'
 
 export function MovieSearchResults({ query }) {
+  const { movies, loading } = useMoviesFromQuery(query)
+
+  return (
+    <>
+      {loading && <p>Loading…</p>}
+      {movies && <MovieList movies={movies} />}
+    </>
+  )
+}
+
+function useMoviesFromQuery(query) {
   const [movies, setMovies] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -27,10 +38,5 @@ export function MovieSearchResults({ query }) {
     }
   }, [query])
 
-  return (
-    <>
-      {loading && <p>Loading…</p>}
-      {movies && <MovieList movies={movies} />}
-    </>
-  )
+  return { movies, loading }
 }
