@@ -1,0 +1,15 @@
+.moviePoster {
+  float: right;
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+.moviePoster.big {
+  margin: 0;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  object-position: center;
+  object-fit: contain;
+}

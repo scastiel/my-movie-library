@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { fetchMovie } from '../../../lib/tmdb'
 import styles from './page.module.css'
+import { MoviePoster } from '../../../components/movie-poster'
 
 export default async function MovieDetails({ movieId }) {
   const movie = await fetchMovie(movieId)
@@ -11,13 +12,7 @@ export default async function MovieDetails({ movieId }) {
 
   return (
     <div className={styles.movieDetail}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        width={200}
-        height={300}
-        alt=""
-      />
+      <MoviePoster movie={movie} />
       <h1>
         {movie.title} <small>({movie.release_date.split('-')[0]})</small>
       </h1>
