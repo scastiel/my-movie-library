@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { fetchMovie } from '../../../lib/tmdb'
 import styles from './page.module.css'
 import { MoviePoster } from '../../../components/movie-poster'
+import { ReviewForm } from '../../../components/review-form'
 
 export default async function MovieDetails({ movieId }) {
   const movie = await fetchMovie(movieId)
@@ -34,6 +35,7 @@ export default async function MovieDetails({ movieId }) {
       <p>
         <strong>Revenue:</strong> ${movie.revenue.toLocaleString('en-CA')}
       </p>
+      <ReviewForm />
     </div>
   )
 }
