@@ -38,3 +38,7 @@
   border: 0;
   border-radius: 6px;
 }
+
+.reviewForm .error {
+  color: red;
+}
