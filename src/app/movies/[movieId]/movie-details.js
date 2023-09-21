@@ -35,7 +35,7 @@ export default async function MovieDetails({ movieId }) {
       <p>
         <strong>Revenue:</strong> ${movie.revenue.toLocaleString('en-CA')}
       </p>
-      <ReviewForm />
+      <ReviewForm movieId={movieId} />
     </div>
   )
 }

@@ -35,7 +35,7 @@ function validateReviewFormValues(formValues) {
   return errors
 }
 
-export function ReviewForm({ movie }) {
+export function ReviewForm({ movieId }) {
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -44,6 +44,8 @@ export function ReviewForm({ movie }) {
   })
   const [errors, setErrors] = useState({})
 
+  const [submitStatus, setSubmitStatus] = useState('not_submitted')
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -51,7 +53,20 @@ export function ReviewForm({ movie }) {
     setErrors(errors)
     const hasErrors = Object.keys(errors).length > 0
     if (!hasErrors) {
-      console.log('Submit form:', formValues)
+      setSubmitStatus('submitting')
+      fetch(`/movies/${movieId}/submit-review`, {
+        method: 'POST',
+        body: JSON.stringify(formValues),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setSubmitStatus('submitted')
+          console.log(data)
+        })
+        .catch((err) => {
+          setSubmitStatus('submit_error')
+          console.error(err)
+        })
     }
   }
 
@@ -113,8 +128,14 @@ export function ReviewForm({ movie }) {
         {errors.review && <div className={styles.error}>{errors.review}</div>}
       </section>
       <div>
-        <button type="submit">Send</button>
+        <button type="submit" disabled={submitStatus === 'submitting'}>
+          {submitStatus === 'submitting' ? 'Sending…' : 'Send'}
+        </button>
       </div>
+      {submitStatus === 'submit_error' && (
+        <p>An error occurred when sending the review.</p>
+      )}
+      {submitStatus === 'submitted' && <p>Your review was sent!</p>}
     </form>
   )
 }
