@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { validateReviewFormValues } from '../../../../lib/validation'
 import { Resend } from 'resend'
 import { fetchMovie } from '../../../../lib/tmdb'
+import { ReviewEmailTemplate } from '../../../../components/review-email-template'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -24,11 +25,7 @@ export async function POST(req, { params }) {
       from: `My Movie Library <onboarding@resend.dev>`,
       to: [formData.email],
       subject: `${formData.name}’s review of ${movie.title}: ${stars}`,
-      html: `
-        <p>${formData.name} just sent you a review of <strong>${movie.title}</strong>:</p>
-        <p>Rating: ${stars}</p>
-        <blockquote>${formData.review}</blockquote>
-      `,
+      react: <ReviewEmailTemplate movie={movie} formData={formData} />,
     }
     await resend.emails.send(payload)
   } catch (error) {
