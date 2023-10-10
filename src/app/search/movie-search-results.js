@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MovieList } from '../../components/movie-list'
 import { delay } from '../../lib/helpers'
-import { searchMovies } from '../../lib/tmdb'
 
 export function MovieSearchResults({ query }) {
   const { movies, loading } = useMoviesFromQuery(query)
@@ -24,12 +23,14 @@ function useMoviesFromQuery(query) {
     setLoading(true)
     delay(300).then(() => {
       if (isCurrent) {
-        searchMovies(query).then((movies) => {
-          if (isCurrent) {
-            setMovies(movies)
-            setLoading(false)
-          }
-        })
+        fetch(`/api/search-movies?query=${encodeURIComponent(query)}`)
+          .then((res) => res.json())
+          .then((movies) => {
+            if (isCurrent) {
+              setMovies(movies)
+              setLoading(false)
+            }
+          })
       }
     })
 

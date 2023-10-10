@@ -1,0 +1,42 @@
+.starRating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.starRating input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.starRating label {
+  cursor: pointer;
+  font-size: 0 !important;
+  color: rgba(0, 0, 0, 0.2);
+  transition: color 0.1s ease-in-out;
+}
+
+.starRating label:before {
+  content: '★';
+  display: inline-block;
+  font-size: 28px;
+}
+
+.starRating input:checked ~ label {
+  color: #ffc700;
+  color: gold;
+}
+
+.starRating label:hover,
+.starRating label:hover ~ label {
+  color: goldenrod;
+}
+
+.starRating input:checked + label:hover,
+.starRating input:checked + label:hover ~ label,
+.starRating input:checked ~ label:hover,
+.starRating input:checked ~ label:hover ~ label,
+.starRating label:hover ~ input:checked ~ label {
+  color: darkgoldenrod;
+}

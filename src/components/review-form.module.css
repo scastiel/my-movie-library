@@ -1,0 +1,44 @@
+.reviewForm {
+  margin-top: 32px;
+  max-width: 400px;
+  border: 1px solid lightgray;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.reviewForm h3 {
+  margin-top: 0;
+}
+
+.reviewForm section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.reviewForm label {
+  font-size: 0.9em;
+}
+
+.reviewForm input,
+.reviewForm textarea {
+  border: 1px solid lightgray;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1em;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.reviewForm button {
+  background-color: #0891b2;
+  color: white;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+}
+
+.reviewForm .error {
+  color: red;
+}
